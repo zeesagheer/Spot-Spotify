@@ -1,5 +1,6 @@
 package com.project.zee.spotspotify;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -12,16 +13,22 @@ public class TopTen extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_top_ten);
+
+        if (getIntent() != null && getIntent().hasExtra(Intent.EXTRA_TEXT)) {
+            String artistName = getIntent().getStringExtra(Intent.EXTRA_TEXT);
+            setTitle(artistName+" Top 10");
+        }
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        int t;
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_top_ten, menu);
         return true;
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -34,7 +41,7 @@ public class TopTen extends ActionBarActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
+
 }
